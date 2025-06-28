@@ -183,8 +183,8 @@
       const total = weights.reduce((sum, w) => sum + w, 0);
       const average = weights.length ? total / weights.length : 0;
       const below75 = weights.filter(w => w <= 75).reduce((sum, w) => sum + w, 0);
-      const below20 = weights.filter(w => w < 20).reduce((sum, w) => sum + w, 0);
-      const below2 = weights.filter(w => w < 2).reduce((sum, w) => sum + w, 0);
+      const below20 = weights.filter(w => w <= 20).reduce((sum, w) => sum + w, 0);
+      const below2 = weights.filter(w => w <= 2).reduce((sum, w) => sum + w, 0);
 
       const percent75 = total ? (below75 / total * 100).toFixed(1) : 0;
       const percent20 = total ? (below20 / total * 100).toFixed(1) : 0;
@@ -193,9 +193,9 @@
       document.getElementById('result').innerHTML = `
         <strong>Total Weight:</strong> ${total.toFixed(2)} lbs<br>
         <strong>Average Weight:</strong> ${average.toFixed(2)} lbs<br>
-        <strong>% Smaller Than or Equal to 75 lbs:</strong> ${percent75}%<br>
-        <strong>% Smaller Than 20 lbs:</strong> ${percent20}%<br>
-        <strong>% Smaller Than 2 lbs:</strong> ${percent2}%
+        <strong>% Smaller Than or Equal to 75 lbs:</strong> <span style="color: ${percent75 >= 100 ? 'inherit' : 'red'}">${percent75}%</span><br>
+        <strong>% Smaller Than or Equal to 20 lbs:</strong> <span style="color: ${percent20 >= 25 && percent20 <= 50 ? 'inherit' : 'red'}">${percent20}%</span><br>
+        <strong>% Smaller Than or Equal to 2 lbs:</strong> <span style="color: ${percent2 >= 0 && percent2 <= 2 ? 'inherit' : 'red'}">${percent2}%</span>
       `;
 
       const weightElements = weights.map((w, i) => `
