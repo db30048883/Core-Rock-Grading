@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Offline Rock Tracker</title>
+  <title>Stone Tracker</title>
   <link rel="manifest" href="manifest.json">
   <style>
     :root {
@@ -196,7 +196,7 @@
 <body>
   <main class="app">
     <section class="card topbar">
-      <h1>Offline Rock Tracker</h1>
+      <h1>Stone Tracker</h1>
       <div id="networkStatus" class="status">Checking network…</div>
     </section>
 
@@ -450,7 +450,7 @@
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `rock-tracker-${new Date().toISOString().slice(0, 10)}.csv`;
+      a.download = `stone-tracker-${new Date().toISOString().slice(0, 10)}.csv`;
       a.click();
       URL.revokeObjectURL(url);
     }

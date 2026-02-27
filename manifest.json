@@ -1,6 +1,6 @@
 {
-  "name": "Offline Rock Tracker",
-  "short_name": "RockTracker",
+  "name": "Stone Tracker",
+  "short_name": "StoneTracker",
   "start_url": ".",
   "scope": ".",
   "display": "standalone",

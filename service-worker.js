@@ -1,4 +1,4 @@
-const CACHE_NAME = 'rock-tracker-v3';
+const CACHE_NAME = 'stone-tracker-v4';
 const APP_ASSETS = [
   './',
   './index.html',
