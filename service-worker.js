@@ -1,4 +1,4 @@
-const CACHE_NAME = 'rock-tracker-v2';
+const CACHE_NAME = 'rock-tracker-v3';
 const APP_ASSETS = [
   './',
   './index.html',
@@ -25,14 +25,21 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
 
+  const request = event.request;
+  const isNavigationRequest = request.mode === 'navigate';
+
   event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      if (cachedResponse) return cachedResponse;
-      return fetch(event.request).then((networkResponse) => {
+    fetch(request)
+      .then((networkResponse) => {
         const copy = networkResponse.clone();
-        caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
+        caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
         return networkResponse;
-      }).catch(() => caches.match('./index.html'));
-    })
+      })
+      .catch(() =>
+        caches.match(request).then((cachedResponse) => {
+          if (cachedResponse) return cachedResponse;
+          return isNavigationRequest ? caches.match('./index.html') : Response.error();
+        })
+      )
   );
 });
